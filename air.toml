@@ -1,0 +1,21 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+# Путь куда Air положит бинарник
+output = "tmp/main"
+
+# Команда сборки
+cmd = "go build -o {{.Output}} {{.Input}}"
+
+# Что запускать после сборки
+bin = "tmp/main"
+
+# Игнорируемые директории
+exclude_dir = ["tmp", "frontend"]
+
+# Отслеживаем только .go файлы
+include_ext = ["go"]
+
+# Не перезапускать, если изменилось что-то в tmp/**
+exclude_regex = ["tmp/*"]

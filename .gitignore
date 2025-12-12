@@ -1,0 +1,43 @@
+# --- Go build ---
+bin/
+tmp/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Скомпилированные бинарники
+*.o
+*.a
+*.out
+
+# --- Air ---
+tmp/
+.air.toml~
+
+# --- Модули ---
+/vendor/
+
+# --- Кэш ---
+*.log
+*.lock
+.cache/
+
+# --- IDE ---
+# GoLand / JetBrains
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# MacOS system files
+.DS_Store
+
+# --- Тесты ---
+coverage.out
+
+# --- Env files ---
+.env
+.env.*
