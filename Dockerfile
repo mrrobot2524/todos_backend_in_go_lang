@@ -1,19 +1,17 @@
 # Stage 1: Build
-FROM golang:1.21-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
-# Скопируйте go.mod и go.sum
+# Модули
 COPY go.mod go.sum ./
-
-# Скачайте зависимости
 RUN go mod download
 
-# Скопируйте весь код
+# Код
 COPY . .
 
-# Скомпилируйте приложение
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+# Сборка бинарника
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # Stage 2: Runtime
 FROM alpine:latest
@@ -22,14 +20,11 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
-# Скопируйте бинарник из builder stage
+# Копируем бинарник
 COPY --from=builder /app/main .
 
-# Скопируйте frontend build если есть
-COPY --from=builder /app/frontend/dist ./frontend/dist
-
-# Expose порт
+# Порт приложения
 EXPOSE 5000
 
-# Запустите приложение
+# Запуск
 CMD ["./main"]
