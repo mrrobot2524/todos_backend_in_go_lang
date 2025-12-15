@@ -1,21 +1,41 @@
 root = "."
+testdata_dir = "testdata"
 tmp_dir = "tmp"
 
 [build]
-# Путь куда Air положит бинарник
-output = "tmp/main"
+  args_bin = []
+  bin = "tmp/main"
+  cmd = "go build -o ./tmp/main ."
+  delay = 1000
+  exclude_dir = ["tmp", "frontend", "testdata", "vendor"]
+  exclude_file = []
+  exclude_regex = ["_test.go"]
+  exclude_suffix = [".o", ".a"]
+  include_dir = []
+  include_ext = ["go"]
+  include_file = []
+  kill_delay = "0s"
+  log = "build-errors.log"
+  poll = false
+  poll_interval = 0
+  rerun = false
+  rerun_delay = 500
+  send_interrupt = false
+  stop_on_error = false
 
-# Команда сборки
-cmd = "go build -o {{.Output}} {{.Input}}"
+[color]
+  app = ""
+  build = "yellow"
+  main = "magenta"
+  runner = "green"
+  watcher = "cyan"
 
-# Что запускать после сборки
-bin = "tmp/main"
+[log]
+  main_only = false
+  time = false
 
-# Игнорируемые директории
-exclude_dir = ["tmp", "frontend"]
+[misc]
+  clean_on_exit = true
 
-# Отслеживаем только .go файлы
-include_ext = ["go"]
-
-# Не перезапускать, если изменилось что-то в tmp/**
-exclude_regex = ["tmp/*"]
+[screen]
+  clear_on_rebuild = false
