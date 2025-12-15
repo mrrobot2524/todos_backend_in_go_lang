@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  go-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb+srv://alenjon2594_db_user:W7tcyBiy0Y87Jg2Q@cluster0.c2t5wlx.mongodb.net/golang_db?appName=Cluster0
+      - ENV=production
+    restart: unless-stopped
