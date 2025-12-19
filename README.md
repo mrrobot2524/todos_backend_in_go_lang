@@ -37,7 +37,7 @@ text
 Файл `.env` в корне backend‑проекта:
 
 PORT=5000
-MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.c2t5wlx.mongodb.net/golang_db?appName=Cluster0
+MONGODB_URI="URL"
 ENV=development
 
 text
